@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Code Editor</title>
+	<link rel="stylesheet" href="lib/codemirror-5.62.0/lib/codemirror.css">
+	<link rel="stylesheet" href="lib/codemirror-5.62.0/theme/material.css">
+    <link rel="stylesheet" href="style.css">
+	<script src="lib/codemirror-5.62.0/lib/codemirror.js"></script>
+	<script src="lib/codemirror-5.62.0/mode/xml/xml.js"></script>
+	<script src="lib/codemirror-5.62.0/mode/javascript/javascript.js"></script>
+	<script src="lib/codemirror-5.62.0/mode/python/python.js"></script>
+	<script src="lib/codemirror-5.62.0/mode/clike/clike.js"></script>
+	<script src="lib/codemirror-5.62.0/mode/go/go.js"></script>
+	<script src="lib/codemirror-5.62.0/addon/display/autorefresh.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+	<header>
+		<h1 class="white-link">Code Editor</h1>
+	</header>
+	<div id="editor-container">
+		<div id="language-select">
+			<label for="language" class="white-link">Select language:</label>
+			<select id="language" class="white-link">
+				<option value="javascript">JavaScript</option>
+				<option value="python">Python</option>
+				<option value="clike">C</option>
+				<option value="text/x-java">Java</option>
+				<option value="go">Golang</option>
+			</select>
+            <button id="run-button" class="white-link">RUN</button>
+		</div>
+		<div class="CodeMirror">
+			<textarea id="code"></textarea>
+		</div>
+	</div>
+	<footer>
+		<p class="white-link">Created by Sejong</p>
+		<p><a href="sejongchoi.400@gmail.com" class="white-link">sejongchoi.400@gmail.com</a></p>
+	</footer>
+    <script>
+       var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+            mode: "javascript",
+            lineNumbers: true,
+            theme: "material",
+            viewportMargin: Infinity,
+            fullScreen: true,
+            autorefresh: true,
+        });
+        document.getElementById("language").addEventListener("change", function() {
+            editor.setOption("mode", this.value);
+            editor.setValue("");
+        });
+    </script>
+</body>
+</html>
